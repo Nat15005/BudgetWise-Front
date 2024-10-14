@@ -1,0 +1,406 @@
+@font-face {
+    font-family: 'NowAlt-Black';
+    src: url('/resources/now/NowAlt-Black.otf') format('opentype');   
+}
+@font-face {
+    font-family: 'NowAlt-Bold';
+    src: url('/resources/now/NowAlt-Bold.otf') format('opentype');     
+}
+@font-face {
+    font-family: 'NowAlt-Light';
+    src: url('/resources/now/NowAlt-Light.otf') format('opentype');     
+}
+@font-face {
+    font-family: 'NowAlt-Medium';
+    src: url('/resources/now/NowAlt-Medium.otf') format('opentype');   
+}
+@font-face {
+    font-family: 'NowAlt-Regular';
+    src: url('/resources/now/NowAlt-Regular.otf') format('opentype');     
+}
+@font-face {
+    font-family: 'NowAlt-Thin';
+    src: url('/resources/now/NowAlt-Thin.otf') format('opentype');   
+}
+@font-face {
+    font-family: 'Now-Bold';
+    src: url('/resources/now/Now-Bold.otf') format('opentype');     
+}
+@font-face {
+    font-family: 'Now-Light';
+    src: url('/resources/now/Now-Light.otf') format('opentype');     
+}
+@font-face {
+    font-family: 'Now-Medium';
+    src: url('/resources/now/Now-Medium.otf') format('opentype');   
+}
+@font-face {
+    font-family: 'Now-Regular';
+    src: url('/resources/now/Now-Regular.otf') format('opentype');     
+}
+
+@font-face {
+    font-family: 'Now-Thin';
+    src: url('/resources/now/Now-Thin.otf') format('opentype');   
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'NowAlt-Bold', sans-serif;
+    background-color: #f5f5f5;
+}
+
+/* Barra lateral */
+.sidebar {
+    width: 220px;
+    height: 100vh;
+    background-color: #1b1b1b;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinea los elementos hacia la izquierda */
+    padding-top: 20px;
+    padding-left: 20px; /* Ajusta este valor para mover los elementos más a la izquierda */
+}
+
+.sidebar-border {
+    width: 30px; 
+    height: 100vh; 
+    background-color: #f5f5f5; 
+    position: fixed;
+    left: 190px; 
+    top: 0;
+    border-radius: 50px 0px 0px 50px;
+    z-index: 1; 
+}
+
+.logo {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 58px;
+    margin-left: 40px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #549672;
+    width: 62px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 28px;
+    font-family: 'Now-Bold'
+    
+}
+
+.nav-menu {
+    list-style: none;
+    width: 100%;
+    margin-top: 22px;
+}
+
+.nav-menu li {
+    width: 70%;
+    margin: 10px 0;
+}
+
+.nav-menu li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    text-align: left; /* Alinea el texto a la izquierda */
+    font-size: 24px;
+    padding: 20px 0; /* Ajusta el padding para mantener la alineación correcta */
+    font-family: 'Now-Regular', sans-serif;
+    padding-left: 48px; /* Mueve los íconos un poco más hacia la izquierda */
+}
+
+.nav-menu li a img {
+    width: 53%;
+    height: 53%;
+}
+
+.nav-menu li a:hover {
+    background-color: #444;
+}
+
+/* Contenido principal */
+.main-content {
+    margin-left: 220px;
+    padding: 50px;
+}
+
+.main-content h1 {
+    font-size: 36px;
+    margin-bottom: 40px;
+}
+
+.amount-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25%;
+    border-radius: 10px;
+}
+.button_section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25%;
+    padding: 20px;
+    border-radius: 10px;
+}
+.amount-section .amount h2 {
+    font-size: 23px;
+    color: #333;
+    text-align: center;
+}
+.amount-section .Budgeting h2{
+    font-size: 23px;
+    color: #333;
+    text-align: center;
+
+}
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 35px;
+}
+.div_buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Alinear verticalmente */
+    text-align: center; /* Alinear el texto del h3 */
+}
+.div_buttons h3 {
+    font-size: 15px;
+    font-weight: lighter;
+    color: #444;
+}
+.btn-add-income {
+    background-color: #1b1b1b;
+    color: #f5f5f5;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    width: 25px;
+    height: 26px;
+    margin-top: 5px;
+}
+
+.btn-add-income:hover {
+    background-color: #b0d0c1;
+}
+.btn-add-expense {
+    background-color: #1b1b1b;
+    border: none;
+    color: #f5f5f5;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    width: 25px;
+    height: 26px;
+    margin-top: 5px;
+}
+
+.btn-add-expense:hover {
+    background-color: #fdd7a0;
+}
+
+/* Tabla de movimientos */
+.movements-section {
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.movements-section h2 {
+    font-size: 23px;
+    padding-left: 15px;
+    color: #000000;
+    margin-bottom: 20px;
+}
+
+.movements-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.movements-table th, .movements-table td {
+    padding: 10px;
+    text-align: left;
+}
+
+.movements-table th {
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+.movements-table tr:nth-child(even) {
+    background-color: #f5f5f5;
+}
+/* styles.css */
+
+.edit-btn,
+.delete-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.edit-btn img,
+.delete-btn img {
+    width: 40px; /* Ajusta el tamaño según sea necesario */
+    height: 40px; /* Ajusta el tamaño según sea necesario */
+    display: block;
+}
+
+.main-content h2 {
+    font-size: 23px;
+    padding-left: 15px;
+    color: #000000;
+    padding-top: 12px;
+}
+
+
+.btn-amount {
+    font-size: 23px;
+    background-color: #cfeee0;
+    background-size: cover;
+    text-align: center;
+    display: flex;
+    border: none;
+    border-radius: 10px;
+    width: 330px;
+    height: 90px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+    color: #1b1b1b;
+    font-family: 'Now-Bold'
+}
+.btn-budget {
+    font-size: 23px;
+    background-color: #f7d6af;
+    background-size: cover;
+    text-align: center;
+    display: flex;
+    border: none;
+    border-radius: 10px;
+    width: 330px;
+    height: 90px; 
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+    color: #1b1b1b;
+    font-family: 'Now-Bold'
+}
+.fantasma {
+    width: 330px;
+    height: 1px;
+    border: none;
+    background-color: #f5f5f5;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* Espacio aumentado entre cada elemento del formulario */
+}
+
+form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+form input[type="text"],
+form input[type="number"],
+form input[type="date"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%; /* Asegura que el input ocupe todo el ancho del formulario */
+}
+
+form button[type="submit_outcome"] {
+    padding: 12px;
+    background-color: #eba646;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    align-self: center;
+    width: 45%;
+}
+
+form button[type="submit_outcome"]:hover {
+    background-color: #e79e37;
+}
+form button[type="submit_income"] {
+    padding: 12px;
+    background-color: #4cb182;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    align-self: center;
+    width: 45%;
+}
+
+form button[type="submit_income"]:hover {
+    background-color: #3ba071;
+    
+}
+
+/* Estilos para el popup */
+.popup-form {
+    display: none; /* Se mostrará solo cuando se active */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+}
+
+.popup-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+    border-radius: 10px;
+    position: relative;
+}
+
+.close-popup {
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-popup:hover,
+.close-popup:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}

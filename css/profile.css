@@ -1,0 +1,196 @@
+@font-face {
+    font-family: 'NowAlt-Black';
+    src: url('/resources/now/NowAlt-Black.otf') format('opentype');   
+}
+@font-face {
+    font-family: 'NowAlt-Bold';
+    src: url('/resources/now/NowAlt-Bold.otf') format('opentype');     
+}
+@font-face {
+    font-family: 'NowAlt-Light';
+    src: url('/resources/now/NowAlt-Light.otf') format('opentype');     
+}
+@font-face {
+    font-family: 'NowAlt-Medium';
+    src: url('/resources/now/NowAlt-Medium.otf') format('opentype');   
+}
+@font-face {
+    font-family: 'NowAlt-Regular';
+    src: url('/resources/now/NowAlt-Regular.otf') format('opentype');     
+}
+@font-face {
+    font-family: 'NowAlt-Thin';
+    src: url('/resources/now/NowAlt-Thin.otf') format('opentype');   
+}
+@font-face {
+    font-family: 'Now-Bold';
+    src: url('/resources/now/Now-Bold.otf') format('opentype');     
+}
+@font-face {
+    font-family: 'Now-Light';
+    src: url('/resources/now/Now-Light.otf') format('opentype');     
+}
+@font-face {
+    font-family: 'Now-Medium';
+    src: url('/resources/now/Now-Medium.otf') format('opentype');   
+}
+@font-face {
+    font-family: 'Now-Regular';
+    src: url('/resources/now/Now-Regular.otf') format('opentype');     
+}
+
+@font-face {
+    font-family: 'Now-Thin';
+    src: url('/resources/now/Now-Thin.otf') format('opentype');   
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'NowAlt-Bold', sans-serif;
+    background-color: #f5f5f5;
+}
+
+/* Barra lateral */
+.sidebar {
+    width: 220px;
+    height: 100vh;
+    background-color: #1b1b1b;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinea los elementos hacia la izquierda */
+    padding-top: 20px;
+    padding-left: 20px; /* Ajusta este valor para mover los elementos más a la izquierda */
+}
+
+.sidebar-border {
+    width: 30px; 
+    height: 100vh; 
+    background-color: #f5f5f5; 
+    position: fixed;
+    left: 190px; 
+    top: 0;
+    border-radius: 50px 0px 0px 50px;
+    z-index: 1; 
+}
+
+.logo {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 58px;
+    margin-left: 40px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #549672;
+    width: 62px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 28px;
+    font-family: 'Now-Bold'
+    
+}
+
+.nav-menu {
+    list-style: none;
+    width: 100%;
+    margin-top: 22px;
+}
+
+.nav-menu li {
+    width: 70%;
+    margin: 10px 0;
+}
+
+.nav-menu li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    text-align: left; /* Alinea el texto a la izquierda */
+    font-size: 24px;
+    padding: 20px 0; /* Ajusta el padding para mantener la alineación correcta */
+    font-family: 'Now-Regular', sans-serif;
+    padding-left: 48px; /* Mueve los íconos un poco más hacia la izquierda */
+}
+
+.nav-menu li a img {
+    width: 53%;
+    height: 53%;
+}
+
+.nav-menu li a:hover {
+    background-color: #444;
+}
+
+/* Contenido principal */
+.main-content {
+    margin-left: 220px;
+    padding: 50px;
+}
+.main-content h1 {
+    font-size: 36px;
+    margin-bottom: 50px;
+}
+.profile {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap: 10%;
+    border-radius: 10px;
+    margin-bottom: 80px;
+}
+.btn-profile {
+    font-weight: bold;
+    font-size: 25px;
+    background-color: #cfeee0;
+    background-size: cover;
+    text-align: center;
+    display: flex;
+    border: none;
+    border-radius: 10px;
+    width: 250px;
+    height: 250px;
+    align-items: center;
+    justify-content: center;
+}
+.informationProfile h1{
+    margin-top: 19px;
+    font-size: 27px;
+    align-items: center;
+}
+.informationProfile p{
+    font-size: 21px;
+    color: #444;
+    line-height: 1.8;
+}
+.configurationProfile{
+    display: flex;
+    flex-direction: column; /* Asegura que los elementos se apilen verticalmente */
+}
+.configurationProfile h1{
+    font-size: 22px;
+    margin-bottom: 0px
+}
+.configurationProfile hr {
+    margin-right: 40%;
+    height: 2px;
+    background-color: #1b1b1b;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+.imageProfile img {
+    width: 258px; /* Ajusta el tamaño según lo que necesites */
+    height: 250px;
+    border-radius: 14%; /* Esto hará que la imagen sea circular */
+    margin-left: 20px;
+
+}

@@ -1,0 +1,263 @@
+@font-face {
+    font-family: 'NowAlt-Black';
+    src: url('/resources/now/NowAlt-Black.otf') format('opentype');   
+}
+@font-face {
+    font-family: 'NowAlt-Bold';
+    src: url('/resources/now/NowAlt-Bold.otf') format('opentype');     
+}
+@font-face {
+    font-family: 'NowAlt-Light';
+    src: url('/resources/now/NowAlt-Light.otf') format('opentype');     
+}
+@font-face {
+    font-family: 'NowAlt-Medium';
+    src: url('/resources/now/NowAlt-Medium.otf') format('opentype');   
+}
+@font-face {
+    font-family: 'NowAlt-Regular';
+    src: url('/resources/now/NowAlt-Regular.otf') format('opentype');     
+}
+@font-face {
+    font-family: 'NowAlt-Thin';
+    src: url('/resources/now/NowAlt-Thin.otf') format('opentype');   
+}
+@font-face {
+    font-family: 'Now-Bold';
+    src: url('/resources/now/Now-Bold.otf') format('opentype');     
+}
+@font-face {
+    font-family: 'Now-Light';
+    src: url('/resources/now/Now-Light.otf') format('opentype');     
+}
+@font-face {
+    font-family: 'Now-Medium';
+    src: url('/resources/now/Now-Medium.otf') format('opentype');   
+}
+@font-face {
+    font-family: 'Now-Regular';
+    src: url('/resources/now/Now-Regular.otf') format('opentype');     
+}
+
+@font-face {
+    font-family: 'Now-Thin';
+    src: url('/resources/now/Now-Thin.otf') format('opentype');   
+}
+/* Elimina margenes y rellenos predeterminados. Establece la fuente Arial y
+    asegura que el contenido ocupe el 100% de la altura disponible. */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: 'NowAlt-Bold', sans-serif;
+        background-color: #f5f5f5;
+    }
+
+/* contenedor flexible (flexbox) que ocupa toda la altura de la pagina.
+    Este contenedor divide la pantalla en barra lateral y contenido principal. */
+
+/* Define la barra lateral ocupando el 25% del ancho, con fondo oscuro y
+    texto blanco. Se organiza el contenido en columna, con espacio entre los elementos. */
+.sidebar {
+    width: 340px;
+    height: 100vh;
+    background-color: #1b1b1b;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinea los elementos hacia la izquierda */
+    padding-top: 20px;
+    padding-left: 20px;
+    color: white;
+}
+.sidebar-border {
+    width: 130px; 
+    height: 100vh; 
+    background-color: #f5f5f5; 
+    position: fixed;
+    left: 210px; 
+    top: 0;
+    border-radius: 50px 0px 0px 50px;
+    z-index: 1; 
+}
+
+/* Estilo para el logo en la barra lateral: cuadrado pequeño de 60px con
+    fondo blanco y texto verde centrado en negrita. */
+.logo {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 58px;
+    margin-left: 40px;
+    font-size: 32px;
+    font-weight: bold;
+    color: #549672;
+    width: 80px;
+    height: 85px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+    font-family: 'Now-Bold', sans-serif;   
+}
+
+/* Estilo para ls frase destacada: fuente grande, en negrita,
+    con un espaciado entre líneas ajustado y margen inferior para separación. */
+.tagline {
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 1.4;
+    display: flex;
+    align-items: center;
+    margin-bottom: 100%;
+    padding-left: 18px;
+    height: 100%;
+    width: 100%;
+}
+
+/* Define el area de contenido principal restante del ancho.
+    Tiene bordes redondeados a la izquierda y se coloca relleno para el contenido.
+    Se utiliza posición relativa para permitir la colocación de elementos como los puntos (dots). */
+.main-content {
+    margin-left: 220px;
+    padding: 50px;
+}
+
+.main-content h1 {
+    font-size: 36px;
+    margin-bottom: 70px;
+}
+.main-content h2 {
+    font-size: 23px;
+    padding-left: 15px;
+    color: #000000;
+    padding-top: 12px;
+}
+    
+/* Crea una fila de puntos 
+Los puntos se colocan en la esquina superior derecha del área de contenido principal. */
+.dots {
+    position: absolute;
+    top: 47px;
+    right: 47px;
+    display: flex;
+    gap: 10px;
+}
+
+/* Cada punto es un círculo pequeño de 15px de diámetro. */
+.dot {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.black { background-color: #1b1b1b; }
+.green { background-color: #4f9676; }
+.light-green { background-color: #77d1a8; }
+
+/* Define el formulario de inicio de sesion, centrado horizontalmente y
+    desplazado hacia abajo con un margen superior. */
+.login-form {
+    max-width: 400px;
+    margin: 7% 7% 0;
+}
+.signup-form {
+    max-width: 400px;
+    margin: 7% 7% 0;
+}
+/* Estilo para el título principal del formulario, con una fuente grande y
+    margen inferior para separarlo del contenido siguiente. */
+h1 {
+    font-size: 40px;
+    margin-bottom: 20%;
+    margin-left: 20px;
+    font-weight: bold; 
+    color: black; 
+}
+/* Organiza los elementos del formulario en columna, con un espacio entre
+    ellos  */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+input::placeholder {
+    color: #414141;
+    font-weight: bold;
+}
+
+/* Estilo para los campos de entrada de texto: con relleno interno,
+    bordes redondeados y un fondo gris claro. */
+input {
+    padding: 15px;
+    border-radius: 25px;
+    border: none;
+    background-color: #dedede;
+    text-align: left;
+    padding-left: 30px;
+    font-size: 17px;
+    color: black;
+    font-weight: bold
+}
+
+/* Estilo para el botón de envío del formulario: relleno interno, bordes
+    redondeados, fondo verde claro y texto blanco. Se añade un efecto de transición
+    para cuando el botón es presionado o se pasa el ratón sobre él. */
+button {
+    padding: 15px;
+    border-radius: 25px;
+    border: none;
+    width: 50%;
+    align-self: center;
+    margin-top: 50px;
+    background-color: #b0d0c1;
+    color: #414141;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-weight: bold;
+}
+
+
+/* Cambia el color de fondo del botón a un verde más oscuro cuando el ratón
+    pasa por encima. */
+button:hover {
+    background-color: #6f837a;
+}
+
+/* Estilo para el enlace de registro, centrado horizontalmente y con color
+    gris oscuro para el texto. */
+.signup-link {
+    text-align: center;
+    margin-top: 20px;
+    color: #9d9d9d;   
+}
+
+/* Estilo para el enlace dentro del texto de registro: color verde y sin subrayado. */
+.signup-link a {
+    color: #b0d0c1;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Cuando el mouse pasa sobre el enlace, se subraya. */
+.signup-link a:hover {
+    text-decoration: underline;
+}
+.login-link {
+    text-align: center;
+    margin-top: 20px;
+    color: #9d9d9d;  
+}
+.login-link a {
+    color: #b0d0c1;
+    text-decoration: none;
+    font-weight: bold;
+}
+.login-link a:hover {
+    text-decoration: underline;
+}

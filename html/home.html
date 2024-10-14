@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Wise</title>
+    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="/resources/Imagenes/FavIcon.png" type="image/png">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <span>BW</span>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="/html/home.html"><img src="/resources/Imagenes/casa.png" alt="Inicio"></a></li>
+            <li><a href="/html/pocket.html"><img src="/resources/Imagenes/bolsillo.png" alt="Bolsillo"></a></li>
+            <li><a href="/html/budget.html"><img src="/resources/Imagenes/presupuesto.png" alt="Presupuesto"></a></li>
+            <li><a href="/html/profile.html"><img src="/resources/Imagenes/usuario.png" alt="Usuario"></a></li>
+        </ul>        
+    </div>
+    <div class="sidebar-border"></div>
+
+    <div class="main-content">
+        <h1>Overview</h1>
+        <h2>Amount</h2>
+        <div class="amount-section">
+            <div class="amount">
+                <button class="btn-amount">$0 COP</button>
+            </div>
+            <div class="buttons">
+                <button class="btn-add-income">Add <br> Incomes</button>
+                <button class="btn-add-expense">Add <br> Outcomes</button>
+            </div>
+        </div>
+
+        <div class="movements-section">
+            <h2>Movements</h2>
+            <table class="movements-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Name</th>
+                        <th>Value</th>
+                        <th>Remaining</th>
+                        <th>Date</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="movements-table-body">
+                    <!-- Movements added dynamically here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Popup Formulario -->
+    <div id="popup-form" class="popup-form">
+        <div class="popup-content">
+            <span id="close-popup" class="close-popup">&times;</span>
+            <form id="income-form" style="display:none;">
+                <h1 style="text-align: center;">Income</h1>
+                <p> <br> <br> </p>
+                <label for="income-name">Name:</label>
+                <input type="text" id="income-name" required>
+                <p> <br> </p>
+                <label for="income-value">Value:</label>
+                <input type="number" id="income-value" required>
+                <p> <br> </p>
+                <label for="income-date">Date:</label>
+                <input type="date" id="income-date" required>
+                <p> <br> </p>
+                <button type="submit_income">Done</button>
+            </form>
+        
+            <form id="expense-form" style="display:none;">
+                <h1 style="text-align: center;">Outcome</h1>
+                <p> <br> <br> </p>
+                <label for="expense-name">Name:</label>
+                <input type="text" id="expense-name" required>
+                <p> <br> </p>
+                <label for="expense-value">Value:</label>
+                <input type="number" id="expense-value" required>
+                <p> <br> </p>
+                <label for="expense-date">Date:</label>
+                <input type="date" id="expense-date" required>
+                <p> <br> </p>
+                <button type="submit_outcome">Done</button>
+            </form>
+        </div>
+    </div>
+    <!-- Botón flotante en la esquina inferior derecha -->
+    <button id="faqButton" class="faq-button">
+        <img src="/resources/Imagenes/FAQ.png" alt="FAQ">
+      </button>
+
+      <!-- PopUp de FAQ -->
+      <div id="faqPopup" class="popup hidden">
+        <div class="popup-header">
+          <h2 class="faq-title">Frequently Asked Questions</h2>
+          <button id="closePopup" class="close-button">&times;</button>
+        </div>
+
+        <div class="ask-container">
+          <input type="text" id="questionInput" placeholder="Type your question..." />
+          <button id="askButton" class="ask-button">Ask</button>
+        </div>
+
+        <div id="questionsContainer" class="questions-container"></div>
+      </div>
+
+    <!-- Popup de Respuesta -->
+    <div id="responsePopup" class="response-popup hidden">
+        <div class="popup-header">
+            <h3>Type your answer</h3>
+            <button id="closeResponsePopup" class="close-button">&times;</button>
+        </div>
+        <textarea id="responseInput" rows="4" placeholder="Write your answer here..."></textarea>
+        <div class="popup-buttons">
+            <button id="submitResponse" class="submit-button">Send</button>
+            <button id="cancelResponse" class="cancel-button">Cancel</button>
+        </div>
+    </div>
+
+    <script type="module" src="../js/controller.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>
