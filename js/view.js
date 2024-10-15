@@ -176,55 +176,69 @@ class FinancialView {
     addQuestionToContainer(question) {
         const questionElement = document.createElement('div');
         questionElement.classList.add('question');
-    
-        const answerContainer = document.createElement('div');
-        answerContainer.classList.add('answer-container');
-    
+        
         const arrowIcon = document.createElement('span');
         arrowIcon.classList.add('arrow-icon', 'collapsed');
         arrowIcon.addEventListener('click', () => {
-            answerContainer.style.display = 
+            answerContainer.style.display =
                 answerContainer.style.display === 'none' ? 'block' : 'none';
             arrowIcon.classList.toggle('collapsed');
         });
+    
+        // Contenedor para la flecha y el texto juntos
+        const textContainer = document.createElement('div');
+        textContainer.style.display = 'flex';
+        textContainer.style.alignItems = 'center'; // Alineación vertical
+        textContainer.style.gap = '8px'; // Espacio entre la flecha y el texto
+    
+        const questionText = document.createElement('span');
+        questionText.textContent = question.text;
+    
+        textContainer.appendChild(arrowIcon);
+        textContainer.appendChild(questionText);
     
         const answerButton = document.createElement('button');
         answerButton.classList.add('answer-button');
         answerButton.textContent = 'Answer';
         answerButton.addEventListener('click', () => {
-            this.showResponsePopup(question.id, answerContainer); // Pasamos ID y contenedor
+            this.showResponsePopup(question.id, answerContainer);
         });
     
-        questionElement.appendChild(arrowIcon);
-        questionElement.appendChild(document.createElement('span')).textContent = question.text;
+        const answerContainer = document.createElement('div');
+        answerContainer.classList.add('answer-container');
+        answerContainer.style.display = 'none'; // Ocultar inicialmente
+    
+        // Estructura final: Contenedor de texto + botón
+        questionElement.appendChild(textContainer);
         questionElement.appendChild(answerButton);
+    
+        // Agregar pregunta y respuesta al contenedor principal
         this.questionsContainer.appendChild(questionElement);
         this.questionsContainer.appendChild(answerContainer);
-    
-        answerContainer.style.display = 'none'; // Ocultar respuestas inicialmente
     
         if (question.answers && Array.isArray(question.answers)) {
             this.addAnswersToContainer(question.answers, answerContainer);
         }
     }
+    
     addAnswersToContainer(answers, answerContainer) {
         answers.forEach(answer => {
             const answerElement = document.createElement('div');
             answerElement.classList.add('answer');
-            answerElement.innerHTML = answer.text;// Suponiendo que la respuesta tiene un texto
-
-            // Crear la flecha antes de la respuesta
-            const arrowBefore = document.createElement('span');
-            arrowBefore.classList.add('arrow-icon');
-            arrowBefore.style.backgroundImage = 'url("/resources/Imagenes/right-arrow.png")';
-            arrowBefore.style.backgroundSize = 'contain';
-            arrowBefore.style.width = '16px';
-            arrowBefore.style.height = '16px';
-            arrowBefore.style.marginRight = '5px';
-            answerElement.prepend(arrowBefore); // Añadir flecha antes de la respuesta
+            answerElement.innerHTML = answer.text; // Suponiendo que la respuesta tiene un texto
+    
+            // Crear viñeta antes de la respuesta
+            const bulletPoint = document.createElement('span');
+            bulletPoint.textContent = '➜'; // Viñeta
+            bulletPoint.classList.add('bullet-point'); // Clase para estilo
+            bulletPoint.style.marginRight = '8px'; // Espacio entre la viñeta y el texto
+    
+            // Añadir la viñeta al inicio de la respuesta
+            answerElement.prepend(bulletPoint); 
             answerContainer.appendChild(answerElement);
         });
     }
+    
 
     showResponsePopup(questionId, answerContainer) {
         const responsePopup = document.getElementById('responsePopup');

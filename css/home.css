@@ -402,7 +402,7 @@ form button[type="submit_income"]:hover {
   }
 
   .faq-title {
-    font-size: 18px; /* Disminuir tamaño de letra */
+    font-size: 18px; 
     margin: 0;
 }
   
@@ -445,15 +445,34 @@ form button[type="submit_income"]:hover {
     margin-top: 15px;
 }
 
+/* Contenedor principal de las preguntas */
+.questions-container {
+    max-height: 100%;
+    overflow-y: auto;
+    margin-top: 15px;
+}
+
+/* Estilo para cada pregunta */
 .question {
     border-bottom: 2px solid #ddd;
     padding: 10px;
     display: flex;
-    justify-content: flex-start;
-    text-align: left;
+    align-items: center; 
+    gap: 10px; /* Espacio entre flecha y pregunta */
+    margin: 10px 0;
 }
 
-/* answer button*/
+/* Estilo para el texto de la pregunta */
+.question span {
+    display: inline-block; /* Para evitar comportamiento inesperado */
+    flex-grow: 1; /* Ocupa todo el espacio disponible sin desplazar la flecha ni el botón */
+    margin: 0;
+    padding: 0;
+    word-break: break-word; /* Evita desbordamientos con texto largo */
+    line-height: 1.6; /* Asegura un espaciado uniforme */
+}
+
+/* Estilo del botón de respuesta */
 .question button {
     background-color: #f7c87e;
     color: rgb(0, 0, 0);
@@ -461,47 +480,52 @@ form button[type="submit_income"]:hover {
     padding: 5px 10px;
     cursor: pointer;
     border-radius: 9px;
-    margin-left: auto;
+    margin-left: auto; /* Alinea el botón a la derecha */
     font-weight: bold;
 }
 
-
-  .answer-container {
+/* Contenedor de respuestas */
+.answer-container {
     display: flex;
     flex-direction: column; /* Alinear respuestas en columna */
     padding: 10px;
     background-color: #fafafa;
     border-radius: 5px;
     margin-top: 5px;
+}
 
-  }
-
-  .answer {
-    display: flex; /* Para alinear la imagen y el texto */
-    align-items: center; /* Centrar verticalmente */
-    line-height: 1.6; /* Espacio entre líneas de respuesta */
-    margin: 10px 0; /* Espacio entre respuestas */
+/* Estilo para la respuesta */
+.answer {
+    display: flex;
+    align-items: flex-start; /* Alinea la viñeta con el inicio del texto */
+    margin: 10px 0;
+    line-height: 1.6;
     font-family: 'Now-Regular', sans-serif;
+    gap: 5px; /* Espacio entre elementos internos */
 }
 
-/* Flecha hacia la derecha antes de la respuesta */
-.answer::before {
-    content: "";
-    display: inline-block;
-    background-size: contain;
-    width: 16px; /* Ancho de la imagen de flecha */
-    height: 16px; /* Alto de la imagen de flecha */
-    margin-right: 5px; /* Espacio entre la flecha y la respuesta */
+/* Estilo para las viñetas */
+.bullet-point {
+    font-size: 15px; /* Tamaño adecuado de la viñeta */
+    line-height: 1; /* Asegura que la viñeta no cambie de tamaño */
+    color: #696969; /* Gris oscuro */
+    margin-top: 5px; /* Baja la viñeta un poco */
 }
 
-/* Cambiar las imágenes de flechas para el icono desplegable */
+/* Estilo para el icono de flecha */
 .arrow-icon {
-    display: inline-block;
-    width: 16px; /* Ancho de la imagen de flecha */
-    height: 16px; /* Alto de la imagen de flecha */
-    margin-right: 5px; /* Espacio entre la flecha y la pregunta */
+    width: 16px;
+    height: 16px;
     background-size: contain;
     background-repeat: no-repeat;
+    display: inline-block;
+    align-self: flex-start; /* Alinea la flecha al inicio */
+    margin-top: 8px; /* Alineación con el texto */
+    flex-shrink: 0; /* Evita que se redimensione */
+    padding: 0;
+    margin-left: 0; /* Elimina espacio innecesario */
+    cursor: pointer;
+    vertical-align: middle; /* Alinea verticalmente con el texto */
 }
 
 /* Flecha hacia abajo (colapsada) */
