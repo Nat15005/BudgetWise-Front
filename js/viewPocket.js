@@ -1,4 +1,4 @@
-export class PocketView {
+export default class PocketView {
     constructor() {
         this.pocketSection = document.querySelector('.pockets-section');
     }

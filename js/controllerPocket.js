@@ -1,7 +1,7 @@
-import Pocket, { PocketModel } from './modelPocket.js';
-import { PocketView } from './viewPocket.js';
+import PocketModel from './modelPocket.js';
+import PocketView  from './viewPocket.js';
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     const addPocketBtn = document.querySelector('.add-pocket-btn');
     const popupForm = document.getElementById('popup-pocket-form');
     const closePopup = document.getElementById('close-popup');
@@ -13,13 +13,14 @@ document.addEventListener('DOMContentLoaded', () => {
     let pocketModel = new PocketModel();
     let pocketView = new PocketView();
 
-    function createPocketElement(pocket) {
+    function createPocketElement(id, name, value, color) {
         const pocketDiv = document.createElement('div');
         pocketDiv.classList.add('pocket');
-        pocketDiv.style.backgroundColor = pocket.color;
+        pocketDiv.style.backgroundColor = color;
         pocketDiv.innerHTML = `
-            <span>${pocket.name}</span>
-            <span class="pocket-value">$${new Intl.NumberFormat().format(pocket.value)}</span>
+            <span class="pocket-id" style="display:none;">${id}</span>
+            <span class="pocket-name">${name}</span>
+            <span class="pocket-value">$${new Intl.NumberFormat().format(value)}</span>
             <button class="delete-pocket-btn">&times;</button>
         `;
 
@@ -28,9 +29,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
             editingPocket = pocketDiv;
-            document.getElementById('pocket-name').value = pocket.name;
-            document.getElementById('pocket-value').value = pocket.value;
-            document.getElementById('pocket-color').value = pocket.color;
+            document.getElementById('pocket-id').value = id;
+            document.getElementById('pocket-name').value = name;
+            document.getElementById('pocket-value').value = value;
+            document.getElementById('pocket-color').value = color;
             document.getElementById('submit-pocket').textContent = 'Update Pocket';
             popupForm.style.display = 'block';
         });
@@ -50,11 +52,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 cancelButtonText: 'Cancel'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    const pocketName = pocketDiv.querySelector('span').textContent;
+                    const pocketName = pocketDiv.querySelector('.pocket-name').textContent;
                     const pocketValue = parseInt(pocketDiv.querySelector('.pocket-value').textContent.replace(/[^\d]/g, ''), 10); // Extraer el valor numérico
-        
-                    // Eliminar el bolsillo
-                    pocketModel.pockets = pocketModel.pockets.filter(pocket => pocket.name !== pocketName);
+                
+                    const pocketIndex = pocketModel.pockets.findIndex(p => p.id === parseInt(id, 10));
+                    const index = pocketModel.pockets[pocketIndex].id;
+                   
+                    pocketModel.deletePocket(index);
                     pocketDiv.remove();
         
                     // Actualizar el balance sumando el valor del bolsillo eliminado
@@ -63,9 +67,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     localStorage.setItem('balance', storedBalance);
         
                     // Añadir el movimiento de income
-                    addIncomeToLocalStorage(pocketName, pocketValue);
+                    addPocketOutcome(pocketName, pocketValue);
         
                     // Actualizar localStorage con los bolsillos restantes
+                    pocketModel.loadPockets();
                     localStorage.setItem('pockets', JSON.stringify(pocketModel.getPockets()));
         
                     // Mostrar mensaje de éxito
@@ -80,12 +85,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         pocketsSection.insertBefore(pocketDiv, addPocketBtn);
     }
-
-    const storedPockets = JSON.parse(localStorage.getItem('pockets')) || [];
+    
+    await pocketModel.loadPockets();
+    const storedPockets = pocketModel.getPockets() || [];
     storedPockets.forEach(pocketData => {
-        const pocket = new Pocket(pocketData.name, pocketData.value, pocketData.color);
-        pocketModel.addPocket(pocket);
-        createPocketElement(pocket);
+        createPocketElement(pocketData.id,pocketData.name, pocketData.value, pocketData.color);
     });
 
     let storedBalance = localStorage.getItem('balance') || 0;
@@ -109,28 +113,36 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    pocketForm.addEventListener('submit', (e) => {
+    pocketForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-
+        const id = document.getElementById('pocket-id').value;
         const name = document.getElementById('pocket-name').value;
         const value = parseInt(document.getElementById('pocket-value').value, 10);
         const color = document.getElementById('pocket-color').value;
 
         if (editingPocket) {
-            const pocketIndex = pocketModel.pockets.findIndex(p => p.name === editingPocket.querySelector('span').textContent);
+            console.log('Pockets:', pocketModel.pockets);
+           
+            const pocketIndex = pocketModel.pockets.findIndex(p => p.id === parseInt(id, 10));
+
+            console.log(pocketIndex);
             if (pocketIndex > -1) {
                 const oldValue = pocketModel.pockets[pocketIndex].value;
                 const difference = value - oldValue;
 
+                pocketModel.pockets[pocketIndex].id = id;
                 pocketModel.pockets[pocketIndex].name = name;
                 pocketModel.pockets[pocketIndex].value = value;
                 pocketModel.pockets[pocketIndex].color = color;
 
-                editingPocket.querySelector('span').textContent = name;
+                editingPocket.querySelector('.pocket-id').textContent = id;
+                editingPocket.querySelector('.pocket-name').textContent = name;
                 editingPocket.querySelector('.pocket-value').textContent = `$${new Intl.NumberFormat().format(value)}`;
                 editingPocket.style.backgroundColor = color;
-
-                localStorage.setItem('pockets', JSON.stringify(pocketModel.getPockets()));
+            
+                await pocketModel.updatePocket(id, {name, value, color});
+                await pocketModel.loadPockets();
+                
 
                 // Actualizar el balance según la diferencia
                 storedBalance -= difference;
@@ -139,16 +151,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Generar movimiento según la diferencia
                 if (difference > 0) {
-                    addOutcomeToLocalStorage(name, difference);
+                    addPocketIncome(name, difference);
                 } else if (difference < 0) {
-                    addIncomeToLocalStorage(name, Math.abs(difference));
+                    addPocketOutcome(name, Math.abs(difference));
                 }
             }
 
         } else {
-            const pocket = new Pocket(name, value, color);
-            pocketModel.addPocket(pocket);
-            createPocketElement(pocket);
+            const pocket = await pocketModel.addPocket(name, value, color);
+            createPocketElement(pocket.id, name, value, color);
 
             // Restar el valor del bolsillo al balance
             storedBalance -= value;
@@ -156,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('balance', storedBalance);
 
             // Añadir el movimiento de outcome
-            addOutcomeToLocalStorage(name, value);
+            addPocketIncome(name, value);
 
             localStorage.setItem('pockets', JSON.stringify(pocketModel.getPockets()));
         }
@@ -165,21 +176,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Función para agregar el movimiento de outcome al localStorage
-    function addOutcomeToLocalStorage(name, value) {
-        const expenses = JSON.parse(localStorage.getItem('expenses')) || [];
+    function addPocketOutcome(name, value) {
         const date = getLocalDate();
-        const outcome = { name, value, date, type: 'pocketOutcome' };
-        expenses.unshift(outcome);
-        localStorage.setItem('expenses', JSON.stringify(expenses));
+        pocketModel.saveMovement('pocketOutcome', {name, value, date});
     }
 
     // Función para agregar el movimiento de income al localStorage
-    function addIncomeToLocalStorage(name, value) {
-        const incomes = JSON.parse(localStorage.getItem('incomes')) || [];
+    function addPocketIncome(name, value) {
         const date = getLocalDate();
-        const income = { name, value, date, type: 'pocketIncome' };
-        incomes.unshift(income);
-        localStorage.setItem('incomes', JSON.stringify(incomes));
+        pocketModel.saveMovement('pocketIncome', {name, value, date});
     }
 
     // Función para obtener la fecha local en formato YYYY-MM-DD

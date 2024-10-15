@@ -309,7 +309,9 @@ form input[type="color"] {
     border-radius: 5px;
     width: 100%; /* Asegura que el input ocupe todo el ancho del formulario */
 }
-
+#pocket-id {
+    display: none; /* Oculta completamente el input */
+}
 form button[type="submit"] {
     padding: 12px;
     background-color: #4cb182;

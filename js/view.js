@@ -25,31 +25,35 @@ class FinancialView {
         // Crear el contenido de la tabla usando map y join
         const rows = movements.map(movement => {
             // Definir los íconos según el tipo de movimiento
-            let iconSrc, iconAlt, editIcon, deleteIcon;
+            let iconSrc, iconAlt, editIcon, deleteIcon, minous;
             switch (movement.type) {
                 case 'income':
                     iconSrc = '/resources/Imagenes/arriba.png'; // Icono para ingresos
                     iconAlt = 'Ingreso';
                     editIcon = '/resources/Imagenes/editar.png';
                     deleteIcon = '/resources/Imagenes/eliminar.png';
+                    minous = "  ";
                     break;
-                case 'expense':
+                case 'outcome':
                     iconSrc = '/resources/Imagenes/abajo.png'; // Icono para egresos
                     iconAlt = 'Egreso';
                     editIcon = '/resources/Imagenes/editar.png';
                     deleteIcon = '/resources/Imagenes/eliminar.png';
+                    minous = " ";
                     break;
                 case 'pocketIncome':
                     iconSrc = '/resources/Imagenes/pocketIncome.png'; // Icono para ingresos en bolsillo
                     iconAlt = 'Ingreso en Bolsillo';
                     editIcon = '/resources/Imagenes/editPocket.png';
                     deleteIcon = '/resources/Imagenes/deletePocket.png';
+                    minous = " ";
                     break;
                 case 'pocketOutcome':
                     iconSrc = '/resources/Imagenes/pocketOutcome.png'; // Icono para egresos en bolsillo
                     iconAlt = 'Egreso en Bolsillo';
                     editIcon = '/resources/Imagenes/editPocket.png';
                     deleteIcon = '/resources/Imagenes/deletePocket.png';
+                    minous = "   ";
                     break;
                 default:
                     iconSrc = '/resources/Imagenes/default.png'; 
@@ -68,7 +72,7 @@ class FinancialView {
                         <img src="${iconSrc}" alt="${iconAlt}" class="icon-img">
                     </td>
                     <td>${movement.name}</td>
-                    <td>$${movement.value.toLocaleString()}</td>
+                    <td>${minous}$${movement.value.toLocaleString()}</td>
                     <td>$${movement.remaining ? movement.remaining.toLocaleString() : '0'}</td>
                     <td>${dateOnly}</td>
                     <td class="action-cell">

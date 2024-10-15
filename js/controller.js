@@ -211,25 +211,27 @@ class FinancialController {
         await this.model.loadMovements(); // Cargar movimientos desde la API
         let runningBalance = 0; // Comienza con el balance inicial
         const movements = [];
-
+        console.log(this.model.incomes);
+        console.log(this.model.expenses);
         // Combinar ingresos y egresos en un solo array
-        const allMovements = [
-            ...this.model.incomes.map((income, index) => ({ ...income, type: 'income', index })),
-            ...this.model.expenses.map((expense, index) => ({ ...expense, type: 'expense', index }))
-        ];
-        
+        const allMovements = this.model.getMovements();
+        console.log(allMovements);
         // Ordenar por fecha y hora en orden descendente
         allMovements.sort((a, b) => new Date(a.date) - new Date(b.date));
-        console.log(allMovements);
+        
         // Procesar todos los movimientos ordenados
        
         allMovements.forEach(movement => {
-            if (movement.type === 'income') {
+            if (movement.type === 'income' || movement.type === 'pocketOutcome') {
+;
                 runningBalance += movement.value;
-            } else if (movement.type === 'expense') {
+        
+            } else if (movement.type === 'outcome' || movement.type === 'pocketIncome') {
+    
                 runningBalance -= movement.value;
+          
             }
-            console.log(runningBalance+ " "+movement);
+           
             movements.push({
                 id: movement.id,
                 name: movement.name,
